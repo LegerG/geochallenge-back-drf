@@ -1,14 +1,14 @@
-from django.contrib.auth.models import User, Group
 from rest_framework import serializers
+from .models import Territory, TerritoryName
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class TerritorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ['url', 'username', 'email', 'groups']
+        model = Territory
+        fields = ('code', 'wikipedia_link')
 
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
+class TerritoryNameSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Group
-        fields = ['url', 'name']
+        model = TerritoryName
+        fields = ('name',)

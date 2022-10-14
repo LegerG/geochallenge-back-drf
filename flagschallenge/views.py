@@ -1,22 +1,50 @@
-from django.contrib.auth.models import User, Group
-from rest_framework import viewsets
-from rest_framework import permissions
-from .serialisers import UserSerializer, GroupSerializer
+from rest_framework import generics
+from rest_framework.decorators import action
+
+from flagschallenge.serialisers import TerritorySerializer, TerritoryNameSerializer
+from .models import Territory, TerritoryName, Language, TerritoryGroup
+from rest_framework.response import Response
+from rest_framework.exceptions import NotFound
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
+class TerritoryView(generics.ListAPIView):
+    serializer_class = TerritorySerializer
+
+    def get_queryset(self):
+        group_code = self.request.query_params.get('group', '').lower()
+        size = int(self.request.query_params.get('size', -1))
+
+        if group_code != '' and not TerritoryGroup.objects.filter(code=group_code).exists():
+            raise NotFound("Territory group not found")
+
+        queryset = Territory.objects.all()
+        queryset = queryset.order_by('?')  # Always random order
+
+        if group_code != '':
+            queryset = queryset.filter(groups__code=group_code)
+
+        if size > 0:
+            queryset = queryset[:size]
+
+        return queryset
 
 
-class GroupViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
-    permission_classes = [permissions.IsAuthenticated]
+class TerritoryNameView(generics.ListAPIView):
+    serializer_class = TerritoryNameSerializer
+
+    def get_queryset(self):
+        lang_code = self.request.query_params.get('lang', 'en').lower()
+        group_code = self.request.query_params.get('group', '').lower()
+
+        if lang_code != '' and not Language.objects.filter(code=lang_code).exists():
+            raise NotFound("Language not found")
+
+        if group_code != '' and not TerritoryGroup.objects.filter(code=group_code).exists():
+            raise NotFound("Territory group not found")
+
+        queryset = TerritoryName.objects.all().filter(language__code=lang_code)
+
+        if group_code != '':
+            queryset = queryset.filter(territory__groups__code=group_code)
+
+        return queryset
