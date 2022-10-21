@@ -15,6 +15,19 @@ check_result() {
     fi
 }
 
+cleanup() {
+    echo "Cleaning up..."
+
+    cloudlinux-selector delete --json \
+        --interpreter "$interpreter" \
+        --app-root "$app_root" \
+        --user "$user"
+
+    check_result "Failed to delete app"
+
+    rm -rf "$app_root"
+}
+
 create_app() {
     echo "Creating app..."
 
@@ -22,7 +35,7 @@ create_app() {
         --interpreter "$interpreter" \
         --app-root "$app_root" \
         --domain "$app_name.$domaine" \
-        --app_uri "" \
+        --app-uri "" \
         --version "$version" \
         --startup-file "geochallenge/wsgi.py" \
         --passenger-log-file "$home/logs/$app_name/passenger.log" \
@@ -65,6 +78,7 @@ if [ -z $1 ] ; then
     exit 1
 fi
 
+cleanup
 create_app
 move_files
 install_package
