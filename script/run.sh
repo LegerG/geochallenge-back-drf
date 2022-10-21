@@ -8,6 +8,13 @@ app_name="$1"
 domain="gwenael-leger.fr"
 app_root="$home/$app_name"
 
+check_result() {
+    if [ $? -ne 0 ]; then
+        echo "Error: $1"
+        exit 1
+    fi
+}
+
 create_app() {
     echo "Creating app..."
 
@@ -20,12 +27,14 @@ create_app() {
         --startup-file "geochallenge/wsgi.py" \
         --passenger-log-file "$home/logs/$app_name/passenger.log" \
         --entry-point "application"
+    check_result "Failed to create app"
 }
 
 move_files() {
     echo "Moving files..."
 
     cp -r "$home/repositories/$app_name.git" "$app_root"
+    check_result "Failed to copy files"
 }
 
 start_app() {
@@ -35,6 +44,8 @@ start_app() {
         --interpreter "$interpreter" \
         --app-root "$app_root" \
         --user "$user"
+
+    check_result "Failed to start app"
 }
 
 install_package() {
@@ -45,12 +56,16 @@ install_package() {
         --user "$user" \
         --app-root "$app_root" \
         --requirements-file requirements.txt
+
+    check_result "Failed to install package"
 }
 
+if [ -z $1 ] ; then
+    echo "Usage: $0 <app_name>"
+    exit 1
+fi
+
 create_app
-
 move_files
-
 install_package
-
 start_app
