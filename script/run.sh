@@ -5,7 +5,7 @@ home="/home/$user"
 interpreter="python"
 version="3.10"
 app_name="$1"
-domain="gwenael-leger.fr"
+domain="flagle-api.gwenael-leger.fr"
 app_root="$home/$app_name"
 
 check_result() {
@@ -34,7 +34,7 @@ create_app() {
     cloudlinux-selector create --json \
         --interpreter "$interpreter" \
         --app-root "$app_root" \
-        --domain "$app_name.$domain" \
+        --domain "$domain" \
         --app-uri "" \
         --version "$version" \
         --startup-file "geochallenge/wsgi.py" \
