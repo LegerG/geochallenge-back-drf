@@ -46,7 +46,7 @@ create_app() {
 move_files() {
     echo "Moving files..."
 
-    cp -r "$home/repositories/$app_name.git" "$app_root"
+    cp -r "$home/repositories/$app_name.git/*" "$app_root"
     check_result "Failed to copy files"
 }
 
@@ -65,7 +65,7 @@ install_package() {
     echo "Installing package..."
 
     cloudlinux-selector install-modules --json \
-        --interpreter "$python" \
+        --interpreter "$interpreter" \
         --user "$user" \
         --app-root "$app_root" \
         --requirements-file requirements.txt
