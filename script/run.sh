@@ -86,6 +86,30 @@ install_package() {
     check_result "Failed to install package"
 }
 
+migrate_db () {
+    echo "Migrating database..."
+    cloudlinux-selector run-script --json \
+        --interpreter "$interpreter" \
+        --user "$user" \
+        --app-root "$root_app" \
+        --script-name django-admin \
+        -- migrate
+
+    check_result "Failed to migrate database"
+}
+
+seed_db () {
+    echo "Migrating database..."
+    cloudlinux-selector run-script --json \
+        --interpreter "$interpreter" \
+        --user "$user" \
+        --app-root "$root_app" \
+        --script-name django-admin \
+        -- shell < script/seed_database.py
+
+    check_result "Failed to migrate database"
+}
+
 if [ -z $1 ] ; then
     echo "Usage: $0 <app_name>"
     exit 1
@@ -96,4 +120,6 @@ create_app
 move_files
 stop_app
 install_package
+migrate_db
+seed_db
 start_app
