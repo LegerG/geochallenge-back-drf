@@ -52,6 +52,17 @@ move_files() {
     check_result "Failed to copy files"
 }
 
+stop_app() {
+    echo "Stoping app..."
+
+    cloudlinux-selector stop --json \
+        --interpreter "$interpreter" \
+        --app-root "$app_root" \
+        --user "$user"
+
+    check_result "Failed to stop app"
+}
+
 start_app() {
     echo "Starting app..."
 
@@ -83,5 +94,6 @@ fi
 cleanup
 create_app
 move_files
+stop_app
 install_package
 start_app
