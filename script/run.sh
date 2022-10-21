@@ -18,7 +18,7 @@ check_result() {
 cleanup() {
     echo "Cleaning up..."
 
-    cloudlinux-selector delete --json \
+    cloudlinux-selector destroy --json \
         --interpreter "$interpreter" \
         --app-root "$app_root" \
         --user "$user"
