@@ -39,6 +39,7 @@ create_app() {
         --version "$version" \
         --startup-file "geochallenge/wsgi.py" \
         --passenger-log-file "$home/logs/$app_name/passenger.log" \
+        --env-vars '{"DJANGO_SETTINGS_MODULE": "geochallenge.settings"}' \
         --entry-point "application"
     check_result "Failed to create app"
 }
