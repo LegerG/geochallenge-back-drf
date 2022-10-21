@@ -48,6 +48,7 @@ move_files() {
     echo "Moving files..."
 
     cp -r "$home/repositories/$app_name.git"/* "$app_root"
+    cp "$home/repositories/$app_name.git/.env" "$app_root"
 
     check_result "Failed to copy files"
 }
