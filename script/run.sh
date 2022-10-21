@@ -34,7 +34,7 @@ create_app() {
     cloudlinux-selector create --json \
         --interpreter "$interpreter" \
         --app-root "$app_root" \
-        --domain "$app_name.$domaine" \
+        --domain "$app_name.$domain" \
         --app-uri "" \
         --version "$version" \
         --startup-file "geochallenge/wsgi.py" \
