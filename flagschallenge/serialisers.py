@@ -9,6 +9,8 @@ class TerritorySerializer(serializers.ModelSerializer):
 
 
 class TerritoryNameSerializer(serializers.ModelSerializer):
+    code = serializers.CharField(source='territory')
+
     class Meta:
         model = TerritoryName
-        fields = ('name',)
+        fields = ('name', 'code')
