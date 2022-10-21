@@ -45,7 +45,7 @@ create_app() {
 
 move_files() {
     echo "Moving files..."
-
+    echo "$home/repositories/$app_name.git/*" "$app_root"
     cp -r "$home/repositories/$app_name.git/*" "$app_root"
     check_result "Failed to copy files"
 }
