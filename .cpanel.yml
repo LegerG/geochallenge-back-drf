@@ -1,4 +1,4 @@
 ---
 deployment:
   tasks:
-    - /bin/bash script/run.sh geochallenge-back-drf > .cpanel.yml.log
+    - /bin/bash script/run.sh geochallenge-back-drf
