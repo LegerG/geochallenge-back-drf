@@ -93,8 +93,7 @@ migrate_db () {
         --interpreter "$interpreter" \
         --user "$user" \
         --app-root "$root_app" \
-        --script-name python3 \
-        -- manage.py migrate
+        --script-name "python3 manage.py migrate"
 
     check_result "Failed to migrate database"
 }
