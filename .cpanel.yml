@@ -1,4 +1,8 @@
 ---
 deployment:
   tasks:
-    - /bin/bash script/run.sh geochallenge-back-drf
+    - source /home/legw3018/virtualenv/geochallenge-back-drf/3.10/bin/activate && cd /home/legw3018/geochallenge-back-drf
+    - /bin/bash script/run.sh first_steps geochallenge-back-drf
+    - python3 manage.py migrate
+    - python3 manage.py shell < script/seed_database.py
+    - /bin/bash script/run.sh start_app geochallenge-back-drf

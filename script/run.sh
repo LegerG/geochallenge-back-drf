@@ -110,16 +110,17 @@ seed_db () {
     check_result "Failed to migrate database"
 }
 
-if [ -z $1 ] ; then
-    echo "Usage: $0 <app_name>"
+if [ -z $1 ] || [ -z $2 ] ; then
+    echo "Usage: $0 <command> <app_name>"
     exit 1
 fi
 
-cleanup
-create_app
-move_files
-stop_app
-install_package
-migrate_db
-seed_db
-start_app
+first_steps () {
+    cleanup
+    create_app
+    move_files
+    stop_app
+    install_package
+}
+
+"$@"
