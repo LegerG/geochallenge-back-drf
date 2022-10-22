@@ -4,7 +4,7 @@ user="legw3018"
 home="/home/$user"
 interpreter="python"
 version="3.10"
-app_name="$1"
+app_name="$2"
 domain="flagle-api.gwenael-leger.fr"
 app_root="$home/$app_name"
 
