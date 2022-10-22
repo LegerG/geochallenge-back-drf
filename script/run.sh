@@ -93,8 +93,8 @@ migrate_db () {
         --interpreter "$interpreter" \
         --user "$user" \
         --app-root "$root_app" \
-        --script-name django-admin \
-        -- migrate
+        --script-name python3 \
+        -- manage.py migrate
 
     check_result "Failed to migrate database"
 }
@@ -105,7 +105,7 @@ seed_db () {
         --interpreter "$interpreter" \
         --user "$user" \
         --app-root "$root_app" \
-        --script-name django-admin \
+        --script-name python3 \
         -- shell < script/seed_database.py
 
     check_result "Failed to migrate database"
