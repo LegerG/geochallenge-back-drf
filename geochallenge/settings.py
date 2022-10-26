@@ -25,6 +25,8 @@ if "SECRET_KEY" not in os.environ or not os.environ["SECRET_KEY"]:
 if "ENVIRONMENT" not in os.environ or not os.environ["ENVIRONMENT"]:
     exit("No ENVIRONMENT set for Django, aborting for safety.")
 
+if "DB_PASSWORD" not in os.environ:
+    exit("No DB_PASSWORD set for Django, aborting for safety.")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
