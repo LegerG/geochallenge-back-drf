@@ -98,13 +98,25 @@ WSGI_APPLICATION = 'geochallenge.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+DATABASES_DICT = {
+    "development": {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    },
+    "production": {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "legw3018_country_db",
+            "USER": "legw3018_country_db_user",
+            "PASSWORD": os.environ["DB_PASSWORD"],
+            "HOST": "localhost",
+            "PORT": "",
+        }
     }
 }
+DATABASES = DATABASES_DICT[os.environ["ENVIRONMENT"]]
 
 
 # Password validation

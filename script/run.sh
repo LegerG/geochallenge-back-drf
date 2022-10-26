@@ -121,6 +121,7 @@ first_steps () {
     move_files
     stop_app
     install_package
+    start_app
 }
 
 "$@"
