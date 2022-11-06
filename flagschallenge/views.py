@@ -43,7 +43,7 @@ class TerritoryNameView(generics.ListAPIView):
         queryset = TerritoryName.objects.all().filter(language__code=lang_code)
 
         if group_code != '':
-            queryset = queryset.filter(territory__groups__code=group_code)
+            queryset = queryset.filter(territory__territory__groups__code=group_code)
 
         return queryset
 
