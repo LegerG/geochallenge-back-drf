@@ -1,8 +1,5 @@
 #!/usr/bin/env python
-import json
-from os.path import isfile, join
-from os import listdir
-from flagschallenge.models import Territory, TerritoryName, Language, TerritoryGroup
+from flagschallenge.models import Territory, TerritoryGroup
 
 #  ▄██████▄  ███▄▄▄▄   ███    █▄
 # ███    ███ ███▀▀▀██▄ ███    ███
@@ -210,7 +207,7 @@ un_countries = [
     "zw", # "Zimbabwe",
 ]
 
-united_nations = TerritoryGroup.objects.create(code="un", wikipedia_link="https://en.wikipedia.org/wiki/United_Nations")
+united_nations = TerritoryGroup.objects.create(code="gr_un", wikipedia_link="https://en.wikipedia.org/wiki/United_Nations")
 
 for country_code in un_countries:
     country = Territory.objects.get(code=country_code)

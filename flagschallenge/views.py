@@ -1,14 +1,12 @@
 from rest_framework import generics
-from rest_framework.decorators import action
 
-from flagschallenge.serialisers import TerritorySerializer, TerritoryNameSerializer
+from flagschallenge.serialisers import GeographySerializer, TerritoryNameSerializer
 from .models import Territory, TerritoryName, Language, TerritoryGroup
-from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 
 
 class TerritoryView(generics.ListAPIView):
-    serializer_class = TerritorySerializer
+    serializer_class = GeographySerializer
 
     def get_queryset(self):
         group_code = self.request.query_params.get('group', '').lower()
@@ -48,3 +46,7 @@ class TerritoryNameView(generics.ListAPIView):
             queryset = queryset.filter(territory__groups__code=group_code)
 
         return queryset
+
+class TerritoryGroupView(generics.ListAPIView):
+    serializer_class = GeographySerializer
+    queryset = TerritoryGroup.objects.all()

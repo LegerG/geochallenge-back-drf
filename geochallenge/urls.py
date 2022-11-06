@@ -27,5 +27,7 @@ urlpatterns = [
     path('api/territory/', view=views.TerritoryView.as_view(), name="Territory API"),
     path('api/territory/name/', view=views.TerritoryNameView.as_view(),
          name="Territory Name API"),
+    path('api/territory/group/', view=views.TerritoryGroupView.as_view(),
+         name="Territory Group API"),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

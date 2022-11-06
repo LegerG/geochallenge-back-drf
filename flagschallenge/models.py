@@ -8,9 +8,6 @@ class GeographyBase(models.Model):
     wikipedia_link = models.URLField(
         max_length=150, help_text="Link to the Wikipedia page", blank=True, null=True)
 
-    class Meta:
-        abstract = True
-
     def __str__(self):
         return self.code
 
@@ -65,7 +62,7 @@ class TerritoryName(models.Model):
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     territory = models.ForeignKey(help_text="Territory reference",
-                                  to=Territory, on_delete=models.CASCADE, related_name="territoryname_set")
+                                  to=GeographyBase, on_delete=models.CASCADE, related_name="territoryname_set")
     language = models.ForeignKey(help_text="Language reference",
                                  to=Language, on_delete=models.CASCADE, related_name="territoryname_set")
     name = models.CharField(help_text="Territory name in the language",

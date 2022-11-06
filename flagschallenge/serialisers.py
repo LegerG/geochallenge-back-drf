@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from .models import Territory, TerritoryName
+from .models import Territory, TerritoryName, TerritoryGroup
 
 
-class TerritorySerializer(serializers.ModelSerializer):
+class GeographySerializer(serializers.ModelSerializer):
     class Meta:
         model = Territory
         fields = ('code', 'wikipedia_link')

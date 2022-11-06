@@ -1,0 +1,65 @@
+from flagschallenge.models import TerritoryName, TerritoryGroup, Language
+
+antarctica = TerritoryGroup.objects.get(code="gr_an")
+africa = TerritoryGroup.objects.get(code="gr_af")
+asia = TerritoryGroup.objects.get(code="gr_as")
+europe = TerritoryGroup.objects.get(code="gr_eu")
+north_america = TerritoryGroup.objects.get(code="gr_na")
+south_america = TerritoryGroup.objects.get(code="gr_sa")
+oceania = TerritoryGroup.objects.get(code="gr_oc")
+united_nations = TerritoryGroup.objects.get(code="gr_un")
+
+english = Language.objects.get(code="en")
+french = Language.objects.get(code="fr")
+spanish = Language.objects.get(code="es")
+german = Language.objects.get(code="de")
+italian = Language.objects.get(code="it")
+
+
+TerritoryName.objects.create(territory=antarctica, language=french, name="Antarctique")
+TerritoryName.objects.create(territory=antarctica, language=english, name="Antarctica")
+TerritoryName.objects.create(territory=antarctica, language=spanish, name="Antártida")
+TerritoryName.objects.create(territory=antarctica, language=german, name="Antarktis")
+TerritoryName.objects.create(territory=antarctica, language=italian, name="Antartide")
+
+TerritoryName.objects.create(territory=africa, language=french, name="Afrique")
+TerritoryName.objects.create(territory=africa, language=english, name="Africa")
+TerritoryName.objects.create(territory=africa, language=spanish, name="África")
+TerritoryName.objects.create(territory=africa, language=german, name="Afrika")
+TerritoryName.objects.create(territory=africa, language=italian, name="Africa")
+
+TerritoryName.objects.create(territory=asia, language=french, name="Asie")
+TerritoryName.objects.create(territory=asia, language=english, name="Asia")
+TerritoryName.objects.create(territory=asia, language=spanish, name="Asia")
+TerritoryName.objects.create(territory=asia, language=german, name="Asien")
+TerritoryName.objects.create(territory=asia, language=italian, name="Asia")
+
+TerritoryName.objects.create(territory=europe, language=french, name="Europe")
+TerritoryName.objects.create(territory=europe, language=english, name="Europe")
+TerritoryName.objects.create(territory=europe, language=spanish, name="Europa")
+TerritoryName.objects.create(territory=europe, language=german, name="Europa")
+TerritoryName.objects.create(territory=europe, language=italian, name="Europa")
+
+TerritoryName.objects.create(territory=north_america, language=french, name="Amérique du Nord")
+TerritoryName.objects.create(territory=north_america, language=english, name="North America")
+TerritoryName.objects.create(territory=north_america, language=spanish, name="América del Norte")
+TerritoryName.objects.create(territory=north_america, language=german, name="Nordamerika")
+TerritoryName.objects.create(territory=north_america, language=italian, name="America del Nord")
+
+TerritoryName.objects.create(territory=south_america, language=french, name="Amérique du Sud")
+TerritoryName.objects.create(territory=south_america, language=english, name="South America")
+TerritoryName.objects.create(territory=south_america, language=spanish, name="América del Sur")
+TerritoryName.objects.create(territory=south_america, language=german, name="Südamerika")
+TerritoryName.objects.create(territory=south_america, language=italian, name="America del Sud")
+
+TerritoryName.objects.create(territory=oceania, language=french, name="Océanie")
+TerritoryName.objects.create(territory=oceania, language=english, name="Oceania")
+TerritoryName.objects.create(territory=oceania, language=spanish, name="Oceanía")
+TerritoryName.objects.create(territory=oceania, language=german, name="Ozeanien")
+TerritoryName.objects.create(territory=oceania, language=italian, name="Oceania")
+
+TerritoryName.objects.create(territory=united_nations, language=french, name="Nations Unies")
+TerritoryName.objects.create(territory=united_nations, language=english, name="United Nations")
+TerritoryName.objects.create(territory=united_nations, language=spanish, name="Naciones Unidas")
+TerritoryName.objects.create(territory=united_nations, language=german, name="Vereinte Nationen")
+TerritoryName.objects.create(territory=united_nations, language=italian, name="Nazioni Unite")

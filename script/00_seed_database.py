@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 import json
-from os.path import isfile, join
-from os import listdir
-from flagschallenge.models import Territory, TerritoryName, Language, TerritoryGroup
+from flagschallenge.models import Territory, TerritoryName, Language, TerritoryGroup, GeographyBase
 
 
 def main() -> None:
     """Main entry point of the app."""
 
     # Delete all data
+    GeographyBase.objects.all().delete()
     Territory.objects.all().delete()
     TerritoryName.objects.all().delete()
     Language.objects.all().delete()
@@ -23,19 +22,19 @@ def main() -> None:
 
     # Create continents
     africa = TerritoryGroup.objects.create(
-        code="af", wikipedia_link="https://en.wikipedia.org/wiki/Africa")
+        code="gr_af", wikipedia_link="https://en.wikipedia.org/wiki/Africa")
     asia = TerritoryGroup.objects.create(
-        code="as", wikipedia_link="https://en.wikipedia.org/wiki/Asia")
+        code="gr_as", wikipedia_link="https://en.wikipedia.org/wiki/Asia")
     europa = TerritoryGroup.objects.create(
-        code="eu", wikipedia_link="https://en.wikipedia.org/wiki/Europe")
+        code="gr_eu", wikipedia_link="https://en.wikipedia.org/wiki/Europe")
     north_america = TerritoryGroup.objects.create(
-        code="na", wikipedia_link="https://en.wikipedia.org/wiki/North_America")
+        code="gr_na", wikipedia_link="https://en.wikipedia.org/wiki/North_America")
     oceania = TerritoryGroup.objects.create(
-        code="oc", wikipedia_link="https://en.wikipedia.org/wiki/Oceania")
+        code="gr_oc", wikipedia_link="https://en.wikipedia.org/wiki/Oceania")
     south_america = TerritoryGroup.objects.create(
-        code="sa", wikipedia_link="https://en.wikipedia.org/wiki/South_America")
+        code="gr_sa", wikipedia_link="https://en.wikipedia.org/wiki/South_America")
     antarctica = TerritoryGroup.objects.create(
-        code="an", wikipedia_link="https://en.wikipedia.org/wiki/Antarctica")
+        code="gr_an", wikipedia_link="https://en.wikipedia.org/wiki/Antarctica")
 
     # Create countries
 
