@@ -110,8 +110,8 @@ DATABASES_DICT = {
     "production": {
         "default": {
             "ENGINE": "django.db.backends.mysql",
-            "NAME": "legw3018_country_db",
-            "USER": "legw3018_country_db_user",
+            "NAME": "legw3018_country",
+            "USER": "legw3018_country_user",
             "PASSWORD": os.environ["DB_PASSWORD"],
             "HOST": "localhost",
             "PORT": "3306",
